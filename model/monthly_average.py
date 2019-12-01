@@ -1,9 +1,9 @@
-
+import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-input0 = 'CO'
-input1 = '2001'
+input0 = 'NO_2'
+input1 = '2016'
 input2 = ''
 
 # Create dataframe with data
@@ -17,7 +17,7 @@ data1.index = pd.DatetimeIndex(data1.date)
 
 # Resample the data to a lower frequency, sorted by date, grouped by month
 # Note: Apparently the mean() method skips empty rows, results proofed manually by me
-columns = ['CO', 'NO_2', 'NOx', 'O_3', 'PM10', 'SO_2']
+columns = ['CO', 'NO_2', 'O_3', 'PM10', 'SO_2']
 data1_monthly_mean = data1[columns].resample('M').mean()
 
 # Rename date column with month names (Jan, Feb, etc.)
@@ -65,4 +65,26 @@ if input2 is "":
 plt.grid(True)
 plt.ylabel("Average " + element + " " + unit, fontsize=16)
 plt.xlabel("Date", fontsize=16)
+
+plt.fill_between(time, values, where=values >= 0,
+                facecolor='red', alpha=0.2, interpolate=True)
+#plt.fill_between(time, values2, where=values >= 0,
+#                facecolor='blue', alpha=0.2, interpolate=True)
+plt.show()
+
+
+barWidth = 0.25
+bars1 = values
+bars2 = values2
+r1 = np.arange(len(bars1))
+r2 = [x + barWidth for x in r1]
+
+plt.bar(r1, bars1, color='red', width=barWidth, edgecolor='white', label=time_period1)
+plt.bar(r2, bars2, color='blue', width=barWidth, edgecolor='white', label=time_period2)
+plt.xticks([r + barWidth/2 for r in range(len(bars1))], time)
+plt.ylabel("Average " + element + " " + unit, fontsize=16)
+plt.xlabel("Date", fontsize=16)
+plt.title("Average " + element + " " + unit + " in Madrid (" + time_period1 + "/" + time_period2 + ")", fontsize=16)
+plt.legend(loc='upper left', fontsize=13)
+plt.grid(axis='y', b=True)
 plt.show()
