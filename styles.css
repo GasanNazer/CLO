@@ -1,3 +1,7 @@
 .container {
     display: flex;
 }
+
+.classImg {
+    width: 100%;
+}
