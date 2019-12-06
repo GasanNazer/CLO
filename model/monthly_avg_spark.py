@@ -14,8 +14,12 @@ element = sys.argv[1]
 year1 = sys.argv[2]
 year2 = sys.argv[3]
 counter = 0
+numOfYears = 2
 
-while counter < 2:
+if year2 == "":
+    numOfYears = 1
+
+while counter < numOfYears:
     if counter == 0:
         year = year1
     else:
