@@ -11,6 +11,34 @@ conf = SparkConf().setMaster('local').setAppName('Monthly Average')
 sc = SparkContext(conf = conf)
 
 element = sys.argv[1]
+year1 = sys.argv[2]
+year2 = sys.argv[3]
+counter = 0
+
+while counter < 2:
+    if counter == 0:
+        year = year1
+    else:
+        year = year2
+
+    log_txt = sc.textFile("model/madrid_" + year + ".csv")
+    sqlContext = SQLContext(sc)
+    header = log_txt.first()
+
+    log_txt = log_txt.filter(lambda line: line != header)
+    temp_var = log_txt.map(lambda k: k.split(","))
+    log_df = temp_var.toDF(header.split(","))
+
+    log_df2 = log_df.groupBy(month("Date").alias("Month")).agg({element: 'mean'}).orderBy("Month")
+    log_df2.write.format("csv").save("model/output" + year + ".csv")
+
+    counter = counter + 1
+
+'''
+conf = SparkConf().setMaster('local').setAppName('Monthly Average')
+sc = SparkContext(conf = conf)
+
+element = sys.argv[1]
 
 log_txt = sc.textFile("model/madrid_2001.csv")
 sqlContext = SQLContext(sc)
@@ -23,6 +51,8 @@ log_df = temp_var.toDF(header.split(","))
 log_df2 = log_df.groupBy(month("Date").alias("Month")).agg({element: 'mean'}).orderBy("Month")
 log_df2.show()
 log_df2.write.format("csv").save("model/output.csv")
+'''
+
 '''
 print(log_df2.collect())
 
