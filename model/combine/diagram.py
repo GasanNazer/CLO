@@ -8,8 +8,10 @@ time_period = sys.argv[2]
 time_period2 = sys.argv[3]
 unit = sys.argv[4]
 
-df_year1 = pd.read_csv( time_period + ".csv", index_col='month', names=['month', 'avg'])
-df_year2 = pd.read_csv( time_period2 + ".csv", index_col='month', names=['month', 'avg'])
+dir = "monthlyAvg/"
+
+df_year1 = pd.read_csv(dir + element + "_" + time_period + ".csv", index_col='month', names=['month', 'avg'])
+df_year2 = pd.read_csv(dir + element + "_" + time_period2 + ".csv", index_col='month', names=['month', 'avg'])
 
 #sort the dfs
 df_year1.sort_index(inplace=True)
@@ -24,4 +26,5 @@ plt.grid(True)
 plt.ylabel(element + " " + unit, fontsize=16)
 plt.xlabel("Month", fontsize=16)
 plt.legend(loc='upper left', fontsize=16)
-plt.savefig(element + "_" + time_period + "_" + time_period2 + ".png")
+dir_save = "diagrams/"
+plt.savefig(dir_save + element + "_" + time_period + "_" + time_period2 + ".png")

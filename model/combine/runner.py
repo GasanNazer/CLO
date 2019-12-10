@@ -13,17 +13,44 @@ while year < 2018:
         i = i + 1
     year = year + 1
     i = 0;
-'''
 
-dir = 'output_' + elements[i] + "_" + str(year)
-command = 'cp combineMonthAvg.py ' + dir
-print(command) 
-os.system(command)
-os.chdir(dir)
-os.system('pwd') 
-command = './combineMonthAvg.py ' + elements[i] + " " + str(year)
-print(command) 
-os.system(command)
-command = 'cp ' + elements[i] + "_" + str(year) + ".csv ../monthlyAvg/"
-print(command) 
-os.system(command)
+def combineMonthAvg(i, year):
+    oldDir = os.getcwd()
+    dir = 'outputs/output_' + elements[i] + "_" + str(year)
+    command = 'cp combineMonthAvg.py ' + dir
+    os.system(command)
+    os.chdir(dir)
+    os.system('pwd') 
+    command = './combineMonthAvg.py ' + elements[i] + " " + str(year)
+    os.system(command)
+    command = 'cp ' + elements[i] + "_" + str(year) + ".csv ../../monthlyAvg/"
+    os.system(command)
+    os.chdir(oldDir)
+
+year = 2001
+i = 0
+
+while year < 2018:
+    while i < len(elements):
+        combineMonthAvg(i, year)
+        i = i + 1
+    year = year + 1
+    i = 0;
+'''
+i = 2001
+j = i + 1
+
+for e in elements:
+    while i < 2018:
+        while j < 2018:
+            units = "ug/m3"
+            if e == "CO":
+                units = "mg/m3"
+            command = './diagram.py ' + e + " " + str(i) + " " + str(j) + " " + units
+            print(command)
+            os.system(command)
+            j = j + 1
+        i = i + 1
+        j = i + 1
+    i = 2001
+    j = i + 1

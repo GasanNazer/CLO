@@ -22,7 +22,7 @@ log_df = temp_var.toDF(header.split(","))
 
 
 log_df2 = log_df.groupBy(month("Date").alias("Month")).agg({element: 'mean'}).orderBy("Month")
-log_df2.write.format("csv").save("output" + "_" + element + "_" + year)
+log_df2.write.format("csv").save("outputs/output" + "_" + element + "_" + year)
 
 print(log_df2.collect())
 log_df2.show()
