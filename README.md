@@ -8,26 +8,29 @@ Requirements:
 
 Local mode:
 Our pyspark model can be easily executed running the following command in model/combine directory:
+```
 spark-submit monthly_avg_spark_fixed.py {element} {year}
-
+```
 Where:
-{element} - is one of the five elements that we are using CO, NO_2, O_3, PM10, SO_2
-{year} - is one of the years between 2001 and 2017
+`{element}` - is one of the five elements that we are using CO, NO_2, O_3, PM10, SO_2
+`{year}` - is one of the years between 2001 and 2017
 
 E.g: spark-submit monthly_avg_spark_fixed.py CO 2001
 
-The output of this execution is a subfolder “output_{element}_{year}” in the folder outputs.
+The output of this execution is a subfolder `output_{element}_{year}` in the folder outputs.
 This folder contains 12 different .csv files with the number of the month and the mean for it.
 
 Cluster Mode:
 To execute it on this mode you will need a cluster in AWS. The command is the same as for Local mode for a non parallel execution. For a parallel one the command is:
+```
 spark-submit --num-executors x --executor-cores y spark-submit monthly_avg_spark_fixed.py {element} {year}
+```
 
 Where:
-x- number of executors(worker nodes)
-y- number of threads per executor 
-{element} - is one of the five elements that we are using CO, NO_2, O_3, PM10, SO_2
-{year} - is one of the years between 2001 and 2017
+`x`- number of executors(worker nodes)
+`y`- number of threads per executor 
+`{element}` - is one of the five elements that we are using CO, NO_2, O_3, PM10, SO_2
+`{year}` - is one of the years between 2001 and 2017
 
 
 
@@ -35,10 +38,12 @@ Go to the folder model/combine. Here you will see our dataset(18 csv files- with
 
 Requirements:
 -Installed spark and python(the scripts are using python 2)
--sudo pip install plot
--sudo apt-get install python-pip
--sudo pip install numpy
--sudo pip install pandas
+-`sudo pip install plot`
+-`sudo apt-get install python-pip`
+-`sudo pip install numpy`
+-`sudo pip install pandas`
 Command to generate all diagrams execute in /model/combine:
+```
 ./runner.py
+```
 
