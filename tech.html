@@ -11,7 +11,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="assets/css/main.css" />
-    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+    <noscript>
+        <link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 </head>
 
 <body class="is-preload">
@@ -32,7 +33,7 @@
                 <li class="active"><a href="tech.html">How does it work</a></li>
                 <li><a href="team.html">About us</a></li>
             </ul>
-            <ul class="icons" >
+            <ul class="icons">
                 <li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
             </ul>
         </nav>
@@ -40,29 +41,99 @@
         <!-- Main -->
         <div id="main">
 
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent id nisl rhoncus orci ultrices maximus 
-                vitae eu arcu. Curabitur vitae dui maximus, rhoncus elit eget, porta tellus. Mauris a lacus nec lectus 
-                mollis vehicula non vel ipsum. Donec ex velit, elementum vitae elit ac, aliquet fringilla ex. Sed egestas 
-                neque id nisi malesuada luctus. Pellentesque ut ex rutrum mi volutpat tempus. Nullam rutrum euismod lorem, 
-                a ullamcorper nisl. 
+            <h3>Need for Big Data</h3>
+            <p>Analyzing and understanding a huge amount of data can offer a better perspective of why air pollution
+                happens and what could be the most efficient and effective measures to counter it.
+            </p>
+            <h3>Our data</h3>
+            <p>We obtained our dataset “Air Quality in Madrid (2001-2018)“ from the website Kaggel. Kaggel is an online
+                community of data scientists and machine learners which provides open source datasets of different
+                fields. Our dataset contains information about 17 pollutants which concentration was measured by 24
+                different stations hourly between January 2001 and April 2018. Not every station has the same equipment,
+                therefore each station can measure only a certain subset of pollutants. Overall, the dataset consists of
+                18 files, one for each year. Link to our dataset <a
+                    href="https://www.kaggle.com/decide-soluciones/air-quality-madrid">here</a>
             </p>
 
-            <p>Sed vestibulum posuere consequat. Aliquam dictum, augue vel venenatis rutrum, elit nisi euismod 
-                    mauris, nec maximus nunc tellus vel risus. Nam vestibulum nunc pharetra, mollis sapien at, 
-                    consequat lectus. Nam commodo, elit nec suscipit finibus, lacus arcu rutrum sapien, a egestas nunc 
-                    elit quis sapien. Mauris ut placerat sapien. Donec consequat purus in nisl auctor, a faucibus nisi 
-                    euismod. Donec tellus dui, iaculis sit amet diam sed, sagittis tincidunt urna. Fusce condimentum 
-                    vel ligula eget consectetur. Curabitur a rutrum arcu. Praesent odio justo, luctus in leo in, 
-                    malesuada commodo metus. Etiam ante odio, laoreet in malesuada viverra, euismod sed felis. 
-                    Aliquam auctor, turpis id posuere fermentum, arcu eros aliquam nisl, vel venenatis risus est 
-                    consequat nisl. Phasellus tincidunt ligula ac erat blandit luctus. Fusce mattis elit egestas mattis 
-                    scelerisque. 
+            <h3>Our model</h3>
+            <p>
+                As we have already mentioned, we have the data for every hour from 24 stations located in Madrid, and
+                our dataset extends from 2001 to 2018. This large amount of data is too much to be optimally represented
+                in a diagram. So we will smooth our data by calculating the monthly average for each element. After
+                processing the data, our model creates an output file for every element and year, which contains the
+                average pollutant concentration for each month (i.e. output_CO_2001).
+            </p>
+
+            <h3>Brief description of the used technologies</h3>
+            <p>To construct the model we are using pySpark with its both local and cluster mode. After that we process
+                the output of the model with several python scripts, one of which is using “Matplotlib” to create
+                diagrams for a better visual representation of the results. Finally, we populate of website with the
+                created diagram.</p>
+
+            <h3>How to execute the model and all relative scripts</h3>
+
+            <h4>Local mode:</h4>
+            <p>
+                Requirements:<br>
+                -Installed spark and python <br><br>
+                Our pyspark model can be easily executed running the following command in model/combine directory:<br>
+                <code>spark-submit monthly_avg_spark_fixed.py {element} {year}</code><br>
+
+                Where:<br>
+                {element} - is one of the five elements that we are using CO, NO_2, O_3, PM10, SO_2<br>
+                {year} - is one of the years between 2001 and 2017<br>
+
+                E.g: <code>spark-submit monthly_avg_spark_fixed.py CO 2001</code><br><br>
+
+                The output of this execution is a subfolder “output_{element}_{year}” in the folder outputs.
+                This folder contains 12 different .csv files with the number of the month and the mean for it.
+            </p>
+            <h4>Cluster Mode:</h4>
+            <p>
+                To execute it on this mode you will need a cluster in AWS. The command is the same as for Local mode for
+                a non parallel execution. For a parallel one the command is:<br>
+                <code>spark-submit --num-executors x --executor-cores y spark-submit monthly_avg_spark_fixed.py {element}
+                    {year}</code><br>
+
+                Where:<br>
+                x- number of executors(worker nodes)<br>
+                y- number of threads per executor<br>
+                {element} - is one of the five elements that we are using CO, NO_2, O_3, PM10, SO_2<br>
+                {year} - is one of the years between 2001 and 2017<br>
+                <img src="images/command.png" alt="executionCommand" width="80%"><br>
+                <img src="images/finished.png" alt="afterExecution" width="80%">
             </p>
 
             <p>
-                    Curabitur eget consectetur mauris, in cursus urna. Sed tristique euismod ante, ut ornare eros. Phasellus vehicula arcu mauris, id condimentum purus egestas a. Nulla pulvinar, sem quis pretium elementum, leo leo vehicula turpis, vitae elementum nunc ex quis arcu. Quisque ut egestas dui. Ut quis elit sit amet diam cursus imperdiet at scelerisque libero. Donec sed blandit ex. Integer vulputate eu erat at lobortis.
+                Go to the folder model/combine. Here you will see our dataset(18 csv files- with name madrid_year.csv),
+                3 directories- diagrams(here are all generated diagrams), monthlyAvg(a folder with combined solutions
+                for a specific element and year), outputs(with a subfolder of every execution of the model). Also in
+                model/combine you can find 3 python scripts- combineMonthAvg.py(script that combines the output of the
+                model to a single csv file), diagram.py(script that creates a diagram for specific years and element)
+                and runner.py(the purpose of this script is to generate all diagrams for every year for the 5 elements
+                that we are interested in. To do that, it executes the model and all other scripts for every element and
+                year. This execution is taking above 30 minutes.).<br>
+
+                Requirements:<br>
+                -Installed spark and python(the scripts are using python 2)<br>
+                <code>sudo pip install plot</code><br>
+                <code>sudo apt-get install python-pip</code><br>
+                <code>sudo pip install numpy</code><br>
+                <code>sudo pip install pandas</code><br>
+                Command to generate all diagrams, execute in /model/combine:<br>
+                <code>./runner.py</code>
             </p>
 
+            <h3>Performance</h3>
+            <p>
+                After creating the model we prepared some performance tests to see the execution time in different
+                environments. We tested the model with two .csv file of our dataset- madrid_2001.csv and
+                madrid_2010.csv. The first file has 217.848 rows and the other 209.449. The tests consist of multiple
+                executions of the model with the two files. They are run in local environment(a laptop with i5-8250u and
+                8GB of RAM) and an AWS cluster(m4.xlarge in Ireland). The table below represents the obtained
+                results.<br>
+                <img src="images/performance.PNG" alt="performance">
+            </p>
         </div>
 
         <!-- Copyright -->
