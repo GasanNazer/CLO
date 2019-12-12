@@ -1,7 +1,20 @@
 .container {
     display: flex;
+    justify-content: space-between;
 }
 
-.classImg {
-    width: 100%;
+.try{
+    margin-top: 2em;
+}
+
+.classImg{
+    width: 80%;
+    margin-left: 15%;
+}
+
+.block{
+    text-decoration: none !important;
+    margin-left: 1em !important;
+    border: 0 !important;
+    margin-top: -0.4em !important;
 }

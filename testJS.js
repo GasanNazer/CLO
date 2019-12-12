@@ -6,9 +6,11 @@ function myFunction() {
     let element = $("#elementSelector option:selected").text();
     let startYear = $("#startYear option:selected").text();
     let endYear = $("#endYear option:selected").text();
-    console.log(element);
-    console.log(startYear);
-    console.log(endYear);
+    if(startYear > endYear){
+        let a = startYear
+        startYear = endYear
+        endYear = a
+    }
     let imageName = element + "_" + startYear + "_" + endYear + ".png";
     console.log(imageName);
 
@@ -17,7 +19,7 @@ function myFunction() {
     let image = document.createElement("img");
     image.id = "id";
     image.className = "classImg";
-    image.src = "images/charts/" + imageName; // image.src = "IMAGE URL/PATH"
+    image.src = "model/combine/diagrams/" + imageName; // image.src = "IMAGE URL/PATH"
     imageParent.appendChild(image);
 
 }

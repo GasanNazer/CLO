@@ -9,13 +9,13 @@
 /* Wrapper */
 
 	#wrapper {
-		background-color: #212931;
+		background-color: yellowgreen;
 		background-image: url("../../images/overlay.png"), linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url("../../images/bg.jpg");
 		background-size: auto,								auto,														100% auto;
 		background-position: center,								center,														top center;
 		background-repeat: repeat,								no-repeat,													no-repeat;
-		background-attachment: fixed,								fixed,														fixed;
-	}
+		background-attachment: fixed,							fixed,														fixed;
+		}
 
 		#wrapper.fade-in:before {
 			display: none;
@@ -26,11 +26,3 @@
 	body.is-preload #intro {
 		opacity: 1;
 	}
-
-		body.is-preload #intro:not(.hidden) + #header + #nav {
-			-moz-transform: none;
-			-webkit-transform: none;
-			-ms-transform: none;
-			transform: none;
-			opacity: 1;
-		}
