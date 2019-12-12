@@ -7,17 +7,7 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
 
-html, body, div, span, applet, object,
-iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
-pre, a, abbr, acronym, address, big, cite,
-code, del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var, b,
-u, i, center, dl, dt, dd, ol, ul, li, fieldset,
-form, label, legend, table, caption, tbody,
-tfoot, thead, tr, th, td, article, aside,
-canvas, details, embed, figure, figcaption,
-footer, header, hgroup, menu, nav, output, ruby,
-section, summary, time, mark, audio, video {
+* {
 	margin: 0;
 	padding: 0;
 	border: 0;
@@ -99,7 +89,7 @@ input, select, textarea {
 	}
 
 	body {
-		background-color: #1e252d;
+		background-color: green;
 	}
 
 		body.is-preload *, body.is-preload *:before, body.is-preload *:after {
@@ -144,7 +134,7 @@ input, select, textarea {
 		}
 
 	body {
-		color: #212931;
+		color: black;
 	}
 
 	body, input, select, textarea {
@@ -3080,11 +3070,11 @@ input, select, textarea {
 	}
 
 		table tbody tr:nth-child(2n + 1) {
-			background-color: rgba(220, 220, 220, 0.25);
+			background-color: rgba(0,255,0,0.3);
 		}
 
 	table th {
-		color: #212931;
+		color: green;
 	}
 
 	table thead {
@@ -3193,7 +3183,7 @@ input, select, textarea {
 	}
 
 	.pagination a {
-		color: #212931 !important;
+		color: green !important;
 	}
 
 		.pagination a:hover {
@@ -3233,8 +3223,8 @@ input, select, textarea {
 			left: 0;
 			width: 100%;
 			height: 100%;
-			background-color: #212931;
-			background-image: url("../../images/overlay.png"), linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url("../../images/bg.jpg");
+			background-color: green;
+			background-image: url("../../images/overlay.png"), linear-gradient(0deg, green, rgba(0, 128, 0, 0.658)), url("../../images/bg.jpg");
 			background-size: auto,								auto,														100% auto;
 			background-position: center,								center,														top center;
 			background-repeat: repeat,								no-repeat,													no-repeat;
@@ -3254,11 +3244,11 @@ input, select, textarea {
 			-webkit-transition: opacity 1s ease-in-out;
 			-ms-transition: opacity 1s ease-in-out;
 			transition: opacity 1s ease-in-out;
-			-moz-transition-delay: 0.75s;
-			-webkit-transition-delay: 0.75s;
-			-ms-transition-delay: 0.75s;
-			transition-delay: 0.75s;
-			background: #1e252d;
+			-moz-transition-delay: 0.40s;
+			-webkit-transition-delay: 0.40s;
+			-ms-transition-delay: 0.40s;
+			transition-delay: 0.40s;
+			background: rgb(1, 161, 1);
 			content: '';
 			display: block;
 			height: 100%;
@@ -3305,12 +3295,11 @@ input, select, textarea {
 		-moz-transition: opacity 1s ease, -moz-transform 1s ease;
 		-webkit-transition: opacity 1s ease, -webkit-transform 1s ease;
 		-ms-transition: opacity 1s ease, -ms-transform 1s ease;
-		transition: opacity 1s ease, transform 1s ease;
+		transition: opacity 1s ease, transform 1s ease; 
 		position: relative;
 		cursor: default;
 		text-align: center;
-		z-index: 1;
-		min-height: 100vh;
+		z-index: 1; 
 	}
 
 		#intro input, #intro select, #intro textarea {
@@ -3374,7 +3363,7 @@ input, select, textarea {
 			#intro .button.primary {
 				background-color: #ffffff;
 				box-shadow: none;
-				color: #1e252d !important;
+				color: green !important;
 			}
 
 				#intro input[type="submit"].primary:hover,
@@ -3410,19 +3399,6 @@ input, select, textarea {
 				visibility: hidden;
 			}
 
-		#intro.hidden {
-			pointer-events: none;
-			-moz-transform: translateY(2rem);
-			-webkit-transform: translateY(2rem);
-			-ms-transform: translateY(2rem);
-			transform: translateY(2rem);
-			-moz-transition: opacity 0.5s ease, -moz-transform 0.5s ease, visibility 0.5s;
-			-webkit-transition: opacity 0.5s ease, -webkit-transform 0.5s ease, visibility 0.5s;
-			-ms-transition: opacity 0.5s ease, -ms-transform 0.5s ease, visibility 0.5s;
-			transition: opacity 0.5s ease, transform 0.5s ease, visibility 0.5s;
-			opacity: 0;
-			visibility: hidden;
-		}
 
 			#intro.hidden + #header .logo {
 				-moz-transform: translateY(0);
@@ -4257,7 +4233,6 @@ input, select, textarea {
 						-webkit-flex-grow: 0;
 						-ms-flex-grow: 0;
 						flex-grow: 0;
-						width: 6rem;
 					}
 
 					#footer > section.split.contact > section > :last-child {
